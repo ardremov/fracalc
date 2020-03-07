@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Fractional Calculator version 1.0</h1>
+<h3>Enter numerator and denominator and press = button to calculate.</h3>
+
+<table>
+	<col width="120">
+	<col width="80">
+	<col width="120">
+	<col width="50">
+	<col width="120">
+
+	<tr>
+		<td align="center">
+			<input type="number" id="n1" size="10" value="1">
+			<hr>
+			<input type="number" id="d1" size="10" value="2">
+		</td>
+		
+		<td align="center">
+			<select id="oper" size="4" style="width: 50px;">
+				<option SELECTED>+</option>
+				<option>-</option>
+				<option>*</option>
+				<option>/</option>
+			</select>
+		</td>
+		
+		<td  align="center">
+			<input type="number" id="n2" size="10" value="2">
+			<hr>
+			<input type="number" id="d2" size="10" value="3">
+		</td>
+		
+		<td  align="center">
+			<button onclick="calc()">=</button>
+		</td>
+		
+		<td align="center">
+			<input type="number" id="nr" size="10" readonly>
+			<hr>
+			<input type="number" id="dr" size="10" readonly>
+		</td>
+	</tr>
+</table>
+
+<script>
+function calc() {
+	var n1 = document.getElementById("n1").value;
+	var d1 = document.getElementById("d1").value;
+	var n2 = document.getElementById("n2").value;
+	var d2 = document.getElementById("d2").value;
+	var nr;
+	var dr;
+	var oper = document.getElementById("oper").value;
+	//debugger;
+	switch (oper) {
+	case "+":
+	    nr = n1 * d2 + n2 * d1;
+		dr = d1 * d2;
+		break;
+	case "-":
+		nr = n1 * d2 - n2 * d1;
+		dr = d1 * d2;
+		break;
+	case "*":
+		nr = n1 * n2;
+		dr = d1 * d2;
+		break;
+	case "/":
+		nr = n1 * d2;
+		dr = d1 * n2;
+		break;
+	}
+	var gcd = GCD(nr, dr);
+	document.getElementById("nr").value = nr / gcd;
+	document.getElementById("dr").value = dr / gcd;
+}
+
+function GCD(x, y) {
+  x = Math.abs(x);
+  y = Math.abs(y);
+  while(y) {
+    var t = y;
+    y = x % y;
+    x = t;
+  }
+  return x;
+}
+</script>
+
+</body>
+</html>
